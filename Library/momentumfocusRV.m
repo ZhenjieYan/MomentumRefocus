@@ -35,6 +35,7 @@ Fudge=2.62;
 D=85;
 H=25;
 IfFourierFilter=0;
+IfFourierFilterBG=0;
 CutOffFactor=0.2;
 Points=5;
 orlder=2;
@@ -71,29 +72,31 @@ for i =1:length(varargin)
                 orlder=varargin{i+1};
             case 'Nsat'
                 Nsat=varargin{i+1};
+            case 'IfFourierFilterBG'
+                IfFourierFilterBG=varargin{i+1};
         end
     end
 end
 %% Import functions and data
 m= 9.96e-27;
-omega = 2*pi*24;
-hbar = 1.05e-34;
+omega = 2*pi*23.9;
+hbar = 1.055e-34;
 %% Average images
 Nmom=length(momimages);
 momavg=0;
 MomImgPack=cell(Nmom,1);
 for i=1:Nmom
+    tic
     if isstr(momimages{i})
         [~,tempraw]=imagedata(momimages{i});
     else
         tempraw=momimages{i};
     end
     Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp(isnan(Ntemp))=0;
-    Ntemp(Ntemp==inf)=0;
-    Ntemp(Ntemp==-inf)=0;
+    Ntemp=CleanImage(Ntemp);
     MomImgPack{i}=Ntemp;
     momavg=momavg+Ntemp;
+    toc
 end
 momavg=momavg/Nmom;
 output.MomImgPack=MomImgPack;
@@ -102,34 +105,52 @@ Nbg=length(bgimages);
 BgPack=cell(Nbg,1);
 bgavg=0;
 for i=1:Nbg
+    tic
     [~,tempraw]=imagedata(bgimages{i});
     Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp(isnan(Ntemp))=0;
-    Ntemp(Ntemp==inf)=0;
-    Ntemp(Ntemp==-inf)=0;
+    Ntemp=CleanImage(Ntemp);
     BgPack{i}=Ntemp;
     bgavg=bgavg+Ntemp;
+    toc
 end
 output.BgPack=BgPack;
 bgavg=bgavg/Nbg;
-if IfFourierFilter
-    %bgavg=FourierFilter(bgavg,CutOffFactor);
+if Nbg==0
+    bgavg=0*momavg;
+end
+
+%% Crop Images
+momavgcrop=imcrop(momavg,ROI1);
+bgavgcrop=imcrop(bgavg,ROI1);
+
+%%
+if IfFourierFilterBG
+    bgavgcrop=FourierFilter(bgavgcrop,CutOffFactor);
 end
 %% BG subtraction
-momimg=momavg-bgavg;
-momimg=momimg*Fudge;
-%% Crop images
-momcrop = imcrop(momimg,ROI1);
+momcrop=momavgcrop-bgavgcrop;
+momcrop=momcrop*Fudge;
 
+%% Do the Fourier Filter
+if IfFourierFilter
+    momcrop=FourierFilter(momcrop,CutOffFactor);
+end
 
 %% Get profiles
 n=sum(momcrop,2)';
+n0=sum(momavgcrop,2)'*Fudge;
+n1=sum(bgavgcrop,2)'*Fudge;
 z=1:length(n);
 n(isnan(n))=0;
 if IfTailTailor
     if CropTail
         h=figure();
-        scatter(z,n);
+        scatter(z,n,'DisplayName','After BG Subtraction');
+        hold on
+        plot(z,n0,'r.','DisplayName','Before BG Subtraction');
+        plot(z,n1,'b.','DisplayName','BG Subtraction');
+        hold off
+        legend('show');
         questdlg('Now give the range for tail fitting');
         [x,y]=getpts(h);
         close(h);
@@ -140,15 +161,12 @@ if IfTailTailor
 end
 output.Nz=n;
 output.zPixel=z;
-%% Do the Fourier Filter
-if IfFourierFilter
-    momcrop=FourierFilter(momcrop,CutOffFactor);
-end
+
 %% Plot the Image
 figure(1);
 subplot(2,2,1); imagesc(momcrop); axis image; axis off
 %colormap gray; 
-caxis([0,max(momcrop(:))]);
+caxis([-10,max(momcrop(:))]);
 output.Nimg=momcrop;
 % %% Correct for changing radius
 % OUTP = LoSReconstructionTop(refimg,'cropset',{'rect',crop(1)+round(crop(3)/2),crop(2)+round(crop(4)/2),crop(3),crop(4)});
