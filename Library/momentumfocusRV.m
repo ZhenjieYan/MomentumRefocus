@@ -22,7 +22,7 @@ function output = momentumfocusRV(momimages,bgimages,varargin)
 
 %%
 h=figure();
-pixellength=1.44*10^(-6);
+pixellength=1.39*10^(-6);
 sigma0=0.215/2*10^(-12);
 Nsat=330;
 ROI1 = [205,5,150,480];
@@ -32,8 +32,8 @@ CropTail=1;
 IfPolySmooth=0;
 IfTailTailor=1;
 Fudge=2.62;
-D=85;
-H=25;
+D=86.3;
+H=28.7;
 IfFourierFilter=0;
 IfFourierFilterBG=0;
 CutOffFactor=0.2;
@@ -106,7 +106,11 @@ BgPack=cell(Nbg,1);
 bgavg=0;
 for i=1:Nbg
     tic
-    [~,tempraw]=imagedata(bgimages{i});
+    if isstr(bgimages{i})
+        [~,tempraw]=imagedata(bgimages{i});
+    else
+        tempraw=bgimages{i};
+    end
     Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
     Ntemp=CleanImage(Ntemp);
     BgPack{i}=Ntemp;
