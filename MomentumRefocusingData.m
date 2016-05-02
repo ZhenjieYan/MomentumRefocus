@@ -116,7 +116,7 @@ kFFitlist=[kFFitlist,output.kF_Fit]
 %% T/T_F~0.2, semi-goodone
 DataSetName='T0202_20160324';
 momimages={'03-24-2016_21_29_23_top';'03-24-2016_21_28_32_top';'03-24-2016_21_27_40_top';'03-24-2016_21_26_49_top';'03-24-2016_21_25_57_top';'03-24-2016_21_25_06_top';'03-24-2016_21_24_14_top';'03-24-2016_21_23_23_top';'03-24-2016_21_22_31_top';'03-24-2016_21_21_40_top';'03-24-2016_21_20_48_top';'03-24-2016_21_19_57_top'};
-bgimages={'03-24-2016_21_00_00_top';'03-24-2016_20_59_09_top';'03-24-2016_20_58_18_top'};
+bgimages={'03-24-2016_21_00_00_top';'03-24-2016_20_59_09_top';'03-24-2016_20_58_18_top';'03-24-2016_20_46_43_top';'03-24-2016_21_44_04_top';'03-24-2016_22_24_18_top';'03-24-2016_22_23_27_top';'03-24-2016_22_22_13_top'};
 momimagesList={};
 bgimagesList={};
 for i=1:length(momimages)
@@ -132,6 +132,7 @@ for i=1:length(bgimages)
     toc
 end
 save(DataSetName,'momimagesList','bgimagesList');
+
 %% T0202_20160324
 load('T0202_20160324');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4,'IfFourierFilter',1);
@@ -196,7 +197,7 @@ kFFitlist=[kFFitlist,output.kF_Fit]
 %% T/T_F~0.1, goodone
 DataSetName='T010_20160312';
 momimages={'03-12-2016_01_54_06_top';'03-12-2016_01_53_18_top';'03-12-2016_01_52_31_top';'03-12-2016_01_51_43_top';'03-12-2016_01_49_03_top';'03-12-2016_01_48_16_top';'03-12-2016_01_46_41_top';'03-12-2016_01_45_07_top';'03-12-2016_01_40_40_top'};
-bgimages={'03-12-2016_01_19_51_top'};
+bgimages={'03-12-2016_01_19_51_top';'03-12-2016_02_08_01_top';'03-12-2016_02_11_04_top';'03-12-2016_02_18_00_top';'03-12-2016_02_18_00_top';'03-12-2016_01_38_19_top';'03-12-2016_01_35_10_top';'03-12-2016_01_19_51_top'};
 momimagesList={};
 bgimagesList={};
 for i=1:length(momimages)
@@ -213,7 +214,7 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T010_20160312
-load('T010_20160312');
+load('T010_20160312');  
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4);
 %%
 kFNlist=[kFNlist,output.kF_num]
@@ -240,7 +241,7 @@ save(DataSetName,'momimagesList','bgimagesList');
 
 %% T017_20160304
 load('T017_20160304');
-output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4);
+output=momentumfocusRV(momimagesList,{},'Nbins' ,60,'SM',4);
 
 %%
 kFNlist=[kFNlist,output.kF_num]
