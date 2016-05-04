@@ -23,8 +23,8 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T010_20160325
-load('T010_20160325');
-output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4,'TailRange',[50,450]);
+load('Data/T010_20160325');
+output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',2,'TailRange',[50,450]);
 
 %%
 kFNlist=[kFNlist,output.kF_num];
@@ -50,7 +50,7 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T050_20160324
-load('T050_20160324');
+load('Data/T050_20160324');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4,'TailRange',[40,420]);
 
 %%
@@ -78,7 +78,7 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T017_20160324
-load('T017_20160324');
+load('Data/T017_20160324');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4,'TailRange',[40,420]);
 
 %%
@@ -107,7 +107,7 @@ end
 save(DataSetName,'momimagesList','bgimagesList');
 
 %% T020_20160324
-load('T020_20160324')
+load('Data/T020_20160324')
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4);
 %%
 kFNlist=[kFNlist,output.kF_num]
@@ -134,7 +134,7 @@ end
 save(DataSetName,'momimagesList','bgimagesList');
 
 %% T0202_20160324
-load('T0202_20160324');
+load('Data/T0202_20160324');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4,'IfFourierFilter',1);
 
 %%
@@ -161,7 +161,7 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T017_20160321
-load('T017_20160321');
+load('Data/T017_20160321');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4);
 
 %%
@@ -188,7 +188,7 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T015_20160321
-load('T015_20160321');
+load('Data/T015_20160321');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4);
 %%
 kFNlist=[kFNlist,output.kF_num]
@@ -214,7 +214,7 @@ for i=1:length(bgimages)
 end
 save(DataSetName,'momimagesList','bgimagesList');
 %% T010_20160312
-load('T010_20160312');  
+load('Data/T010_20160312');  
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',4);
 %%
 kFNlist=[kFNlist,output.kF_num]
@@ -240,7 +240,7 @@ end
 save(DataSetName,'momimagesList','bgimagesList');
 
 %% T017_20160304
-load('T017_20160304');
+load('Data/T017_20160304');
 output=momentumfocusRV(momimagesList,{},'Nbins' ,60,'SM',4);
 
 %%
@@ -270,7 +270,7 @@ save(DataSetName,'momimagesList','bgimagesList');
 
 
 %%
-load('T040_20160404');
+load('Data/T040_20160404');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1);
 
 
@@ -297,7 +297,7 @@ save(DataSetName,'momimagesList','bgimagesList');
 
 
 %% T010_20160404
-load('T010_20160404');
+load('Data/T010_20160404');
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1);
 
 
@@ -325,7 +325,7 @@ save(DataSetName,'momimagesList','bgimagesList');
 
 
 %%
-load('T020_20160406')
+load('Data/T020_20160406')
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',inf);
 
 %% Defringed

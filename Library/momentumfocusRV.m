@@ -40,6 +40,8 @@ CutOffFactor=0.2;
 Points=5;
 orlder=2;
 IfDerInd=0;
+IfSpline=1;
+SmoothingParam=1.2338479537501e-05;
 Volume=pi/4*D^2*H*pixellength^3;
 output.Volume=Volume;
 for i =1:length(varargin)
@@ -74,6 +76,10 @@ for i =1:length(varargin)
                 Nsat=varargin{i+1};
             case 'IfFourierFilterBG'
                 IfFourierFilterBG=varargin{i+1};
+            case 'SmoothingParam'
+                SmoothingParam=varargin{i+1};
+            case 'IfSpline'
+                IfSpline=varargin{i+1};
         end
     end
 end
@@ -141,10 +147,15 @@ if IfFourierFilter
 end
 
 %% Get profiles
-n=sum(momcrop,2)';
+% n=sum(momcrop,2)';
 n0=sum(momavgcrop,2)'*Fudge;
 n1=sum(bgavgcrop,2)'*Fudge;
-z=1:length(n);
+z=1:length(n1);
+if IfSpline
+    bgfitresult = bgsmoothfit (n1,SmoothingParam);
+    n1=bgfitresult(z)';
+end
+n=n0-n1;
 n(isnan(n))=0;
 if IfTailTailor
     if CropTail
@@ -222,7 +233,11 @@ output.kzsq=kzsq;
 
 %% Bin n1d(kz^2) 
 % kzsqBinGrid=linspace(0,max(sqrt(kzsq)),nbins+1).^2;
+
+
 kzsqBinGrid=linspace(0,max(kzsq),nbins+1);
+
+
 [ kzsqBin,n1dkBin,kzsqStd,n1dkStd ] = BinGrid( kzsq,n1dk,kzsqBinGrid,0 );
 % kzsqBin=kzsq;
 % n1dkBin=n1dk;
@@ -254,6 +269,30 @@ kzFit=kzBin/k0;
 P(3)=P(3)*k0^2;
 [EF_Fit,n_Fit,kF_Fit,beta]=GetEF(P);
 T=1/(beta*EF_Fit);
+%% Bin again
+kzsqGrida=linspace(0,max(kzsq),nbins+1);
+kzsqGridb=linspace(0,max(sqrt(kzsq)),nbins+1).^2;
+kzsqBinGrid=[kzsqGrida(kzsqGrida<=kF_Fit^2),kzsqGridb(kzsqGridb>kF_Fit^2)];
+[ kzsqBin,n1dkBin,kzsqStd,n1dkStd ] = BinGrid( kzsq,n1dk,kzsqBinGrid,0 );
+kzsqBin(isnan(n1dkBin))=[];n1dkBin(isnan(n1dkBin))=[];
+kzsqStd(isnan(n1dkBin))=[];n1dkStd(isnan(n1dkBin))=[];
+output.kzsqBin=kzsqBin;
+output.n1dofkBin=n1dkBin;
+output.kzsqStd=kzsqStd;
+output.n1dkStd=n1dkStd;
+
+%% Do Differentiate again
+[fk,fkStd]=FiniteD( kzsqBin,kzsqStd,n1dkBin,n1dkStd,sm );
+fk=-8*pi^2*fk;
+fkStd=-8*pi^2*fkStd;
+subplot(2,2,4);
+kzBin=sqrt(kzsqBin);
+kzFit=kzBin/k0;
+[P,ffit]=FDfit(kzFit,fk);
+P(3)=P(3)*k0^2;
+[EF_Fit,n_Fit,kF_Fit,beta]=GetEF(P);
+T=1/(beta*EF_Fit);
+
 
 %% do the derivitive on every individual image
 if IfDerInd
@@ -401,7 +440,7 @@ function fitresult = plotnvskz(kz,n)
     hold off
 end
 
-function bgfitresult = bgsmoothfit (bg_profile)
+function bgfitresult = bgsmoothfit (bg_profile,SmoothingParam)
 
 %% Fit: 'untitled fit 1'.
 [xData, yData] = prepareCurveData( [], bg_profile );
@@ -409,7 +448,7 @@ function bgfitresult = bgsmoothfit (bg_profile)
 % Set up fittype and options.
 ft = fittype( 'smoothingspline' );
 opts = fitoptions( 'Method', 'SmoothingSpline' );
-opts.SmoothingParam = 1.2338479537501e-05;
+opts.SmoothingParam = SmoothingParam;
 
 % Fit model to data.
 [bgfitresult, ~] = fit( xData, yData, ft, opts );
