@@ -322,72 +322,15 @@ for i=1:length(bgimages)
     toc
 end
 save(DataSetName,'momimagesList','bgimagesList');
+
+
 %%
 load('Data/T020_20160406')
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',inf);
 
-%% T/T_F=0.15, kF 3.5
-momimagesList={'05-04-2016_22_05_48_top'};
-bgimagesList={};
-out1=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',4,'Fudge',1,'Nsat',120,'ROI1',[150,5,180,480]);
-%% T/T_F=0.15, kF 2.8
-momimagesList={'05-04-2016_22_09_21_top'};
-bgimagesList={};
-out2=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-%% kF 1.7
-momimagesList={'05-04-2016_22_10_14_top'};
-bgimagesList={};
-out3=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-%% kF 2.5
-momimagesList={'05-04-2016_22_30_24_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-
-
-%% kF 2.9 averaged awesome
-
-momimagesList={'05-04-2016_22_40_53_top';'05-04-2016_22_39_08_top';'05-04-2016_22_38_15_top';'05-04-2016_22_37_23_top';'05-04-2016_22_36_31_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-
-%% kF 2.1 averaged bad fudge (goes to 1)
-
-momimagesList={'05-04-2016_22_50_02_top';'05-04-2016_22_49_09_top';'05-04-2016_22_48_17_top';'05-04-2016_22_47_25_top';'05-04-2016_22_46_32_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-%% kF 2.4 
-
-momimagesList={'05-04-2016_23_11_10_top';'05-04-2016_23_08_57_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-%%
-momimagesList={'05-05-2016_00_01_28_top';'05-05-2016_00_00_28_top';'05-04-2016_23_59_27_top';'05-04-2016_23_57_26_top';'05-04-2016_23_56_26_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-%%
-momimagesList={'05-05-2016_00_17_06_top';'05-05-2016_00_16_06_top';'05-05-2016_00_15_05_top';'05-05-2016_00_14_04_top';'05-05-2016_00_13_03_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
-%%
-momimagesList={'05-06-2016_00_58_28_top';'05-06-2016_00_57_34_top';'05-06-2016_00_56_40_top';'05-06-2016_00_55_47_top';'05-06-2016_00_54_54_top';'05-06-2016_00_53_33_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,60,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[5,5,500,480]);
-%% RF then evap
-momimagesList={'05-06-2016_00_44_48_top';'05-06-2016_00_43_54_top';'05-06-2016_00_43_01_top';'05-06-2016_00_40_10_top';'05-06-2016_00_38_53_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[5,5,500,480]);
-%% Evap then RF
-momimagesList={'05-09-2016_21_38_22_top';'05-09-2016_21_37_28_top';'05-09-2016_21_36_34_top';'05-09-2016_21_34_32_top';'05-09-2016_21_33_39_top';'05-09-2016_21_32_45_top';'05-09-2016_21_31_52_top';'05-09-2016_21_30_58_top';'05-09-2016_21_30_04_top';'05-09-2016_21_29_10_top'};
-bgimagesList={};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[5,5,500,480]);
-
-%% Cherry picking
-momimagesList = {'05-09-2016_21_54_53_top'};
-out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[5,5,500,480]);
-
 %% Defringed
 
-momimages={'05-04-2016_23_08_57_top'};
+momimages={'03-12-2016_01_54_06_top';'03-12-2016_01_53_18_top';'03-12-2016_01_52_31_top';'03-12-2016_01_51_43_top';'03-12-2016_01_49_03_top';'03-12-2016_01_48_16_top';'03-12-2016_01_46_41_top';'03-12-2016_01_45_07_top';'03-12-2016_01_40_40_top'};
 N=length(momimages);
 momlist=cell(N,1);
 for i=1:N
