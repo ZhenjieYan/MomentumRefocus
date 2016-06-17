@@ -3,12 +3,14 @@ addpath('Library');
 % time=[30;29;28;27;26;25;24;23;22;21;20;19;18;17;16;15;14;13;12;11;10;9;8;7;6;5;4;3;2;1;0];
 % imagenames={'03-12-2016_01_33_02_top';'03-12-2016_01_30_22_top';'03-12-2016_01_29_34_top';'03-12-2016_01_28_47_top';'03-12-2016_01_27_59_top';'03-12-2016_01_27_12_top';'03-12-2016_01_26_24_top';'03-12-2016_01_25_37_top';'03-12-2016_01_24_49_top';'03-12-2016_01_24_02_top';'03-12-2016_01_23_15_top';'03-12-2016_01_22_27_top';'03-12-2016_01_21_40_top'};
 % time=[26;24;22;20;18;16;14;12;10;8;4;2;0.00100000000000000];
-imagenames={'05-06-2016_00_44_48_top';'05-06-2016_00_43_54_top';'05-06-2016_00_43_01_top';'05-06-2016_00_40_10_top';'05-06-2016_00_38_53_top';'05-06-2016_00_35_22_top'};
-time=[10.4300000000000;10.4300000000000;10.4300000000000;10.4300000000000;10.4300000000000;0];
+imagenames={};
+time=[];
+%%
 Nsat=330;
 pixellength=1.44*10^(-6);
 sigma0=0.215*10^(-12)/2;
-ROI=[2,2,500,500];
+ROI=[5,25,505,490];
+%ROI=[195,25,335,490];
 %%
 N=length(imagenames);
 num=time*0;
@@ -16,7 +18,7 @@ num=time*0;
 for i=1:N
     [~,tempraw]=imagedata(imagenames{i});
     Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp=imcrop(Ntemp,ROI);
+    Ntemp=Ntemp(ROI(2):ROI(4),ROI(1):ROI(3));
     n=sum(Ntemp,2)';
     z=1:length(n);
 %     h=figure();
@@ -24,11 +26,14 @@ for i=1:N
 %     questdlg('Now give the range for tail fitting');
 %     [x,y]=getpts(h);
 %     close(h);
-    zmin=50;
+    zmin=40;
     zmax=390;
-    n=TailTailor(n,z,zmin,zmax);
-    num(i)=sum(n);
+    ncut=TailTailor(n,z,zmin,zmax);
+    num(i)=sum(ncut);
 end
 
 %%
 scatter(time,num)
+ylim([0,1.1*max(num)]);
+xlabel('Time (ms)');ylabel('Indicated Atom Number');
+title('With Green Trap focusing')

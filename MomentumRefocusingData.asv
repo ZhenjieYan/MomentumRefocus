@@ -326,7 +326,7 @@ save(DataSetName,'momimagesList','bgimagesList');
 load('Data/T020_20160406')
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',inf);
 
-%% T/T_F=0.15, kF 3.5
+%% T/T_F=0.15, kF 3.5 set11
 momimagesList={'05-04-2016_22_05_48_top'};
 bgimagesList={};
 out1=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',4,'Fudge',1,'Nsat',120,'ROI1',[150,5,180,480]);
@@ -368,6 +368,88 @@ out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Ns
 momimagesList={'05-05-2016_00_17_06_top';'05-05-2016_00_16_06_top';'05-05-2016_00_15_05_top';'05-05-2016_00_14_04_top';'05-05-2016_00_13_03_top'};
 bgimagesList={};
 out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480]);
+
+%% %%%%%%%%%%%%%  DATA SETS FROM May 4 2016 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Set 1
+momimagesList={'05-05-2016_00_19_07_top';'05-05-2016_00_18_07_top';'05-05-2016_00_17_06_top';'05-05-2016_00_16_06_top';'05-05-2016_00_15_05_top';'05-05-2016_00_14_04_top';'05-05-2016_00_13_03_top'};
+bgimagesList={};
+out1=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',63.5,'D',99);
+
+%% Set 2
+momimagesList={'05-05-2016_00_01_28_top';'05-05-2016_00_00_28_top';'05-04-2016_23_59_27_top';'05-04-2016_23_57_26_top';'05-04-2016_23_56_26_top'};
+bgimagesList={};
+out2=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',65.1,'D',103.6);
+
+%% Set 3 -- semi-final
+momimagesList={'05-04-2016_23_47_20_top';'05-04-2016_23_46_19_top';'05-04-2016_23_44_03_top';'05-04-2016_23_42_12_top'};
+bgimagesList={};
+out3=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,20,'SM',1,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',67.2,'D',101.4);
+
+%% Set 4
+momimagesList={'05-04-2016_23_28_20_top';'05-04-2016_23_27_24_top';'05-04-2016_23_26_27_top';'05-04-2016_23_25_30_top'};
+bgimagesList={};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',67.1,'D',101.6);
+
+%% Set 5
+momimagesList={'05-04-2016_23_18_12_top';'05-04-2016_23_17_12_top';'05-04-2016_23_16_13_top';'05-04-2016_23_15_14_top'};
+bgimagesList={};
+out5=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',64.6,'D',102.4);
+
+%% Set 6 -- semi-final
+momimagesList={'05-04-2016_23_04_37_top';'05-04-2016_23_03_40_top';'05-04-2016_23_02_44_top'};
+bgimagesList={};
+out6=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,20,'SM',1,'Fudge',1,'Nsat',120,'ROI1',[170,5,170,480],'H',65.9,'D',96.8);
+
+%% Set 7
+momimagesList={'05-04-2016_22_57_37_top';'05-04-2016_22_56_45_top';'05-04-2016_22_55_53_top';'05-04-2016_22_55_00_top'};
+bgimagesList={};
+out7=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',68.7,'D',103.2);
+
+%% Set 8
+momimagesList={'05-04-2016_22_50_54_top';'05-04-2016_22_50_02_top';'05-04-2016_22_49_09_top';'05-04-2016_22_48_17_top';'05-04-2016_22_47_25_top';'05-04-2016_22_46_32_top'};
+bgimagesList={};
+out8=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',64.1,'D',103.8);
+
+%% Set 9 -- semi-final
+momimagesList={'05-04-2016_22_40_53_top';'05-04-2016_22_39_08_top';'05-04-2016_22_38_15_top';'05-04-2016_22_37_23_top';'05-04-2016_22_36_31_top'};
+bgimagesList={};
+out9=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,20,'SM',1,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',66.9,'D',104.6);
+
+%% Set 10
+momimagesList = {'05-04-2016_22_29_31_top';'05-04-2016_22_28_39_top';'05-04-2016_22_27_46_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,80,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',66,'D',102);
+disp([num2str(outp.kF_num * 1e-6),'; ', num2str(outp.kF_Fit * 1e-6),'; ',num2str(outp.Pfit(1)),'; ',num2str(outp.T)])
+
+%% Set 11 -- semi-final
+momimagesList={'05-04-2016_22_05_48_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,25,'SM',1,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',66,'D',102);
+disp([num2str(outp.kF_num * 1e-6),'; ', num2str(outp.kF_Fit * 1e-6),'; ',num2str(outp.Pfit(1)),'; ',num2str(outp.T)])
+out11=outp;
+
+%% Set 12 -- semi-final
+momimagesList={'05-04-2016_22_09_21_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,30,'SM',1,'Fudge',1,'Nsat',120,'ROI1',[170,5,180,480],'H',66,'D',102);
+disp([num2str(outp.kF_num * 1e-6),'; ', num2str(outp.kF_Fit * 1e-6),'; ',num2str(outp.Pfit(1)),'; ',num2str(outp.T)])
+out12 = outp;
+
+%% Set 13
+momimagesList={'05-04-2016_22_10_14_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',4,'Fudge',1,'Nsat',120,'ROI1',[150,5,180,480],'H',66,'D',102);
+disp([num2str(outp.kF_num * 1e-6),'; ', num2str(outp.kF_Fit * 1e-6),'; ',num2str(outp.Pfit(1)),'; ',num2str(outp.T)])
+
+%% Set 14
+momimagesList={'05-04-2016_22_30_24_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',4,'Fudge',1,'Nsat',120,'ROI1',[150,5,180,480],'H',66,'D',102);
+disp([num2str(outp.kF_num * 1e-6),'; ', num2str(outp.kF_Fit * 1e-6),'; ',num2str(outp.Pfit(1)),'; ',num2str(outp.T)])
+
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%
 momimagesList={'05-06-2016_00_58_28_top';'05-06-2016_00_57_34_top';'05-06-2016_00_56_40_top';'05-06-2016_00_55_47_top';'05-06-2016_00_54_54_top';'05-06-2016_00_53_33_top'};
 bgimagesList={};
@@ -384,6 +466,288 @@ out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Ns
 %% Cherry picking
 momimagesList = {'05-09-2016_21_54_53_top'};
 out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[5,5,500,480]);
+
+
+%% No Slicing
+momimagesList = {'05-18-2016_19_49_09_top';'05-18-2016_19_48_16_top';'05-18-2016_19_47_24_top';'05-18-2016_19_46_31_top';'05-18-2016_19_45_39_top';'05-18-2016_19_44_46_top';'05-18-2016_19_43_54_top';'05-18-2016_19_43_01_top';'05-18-2016_19_42_09_top';'05-18-2016_19_41_16_top'};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',120,'ROI1',[5,5,500,480]);
+
+
+%% Slicing
+
+momimagesList = {'05-18-2016_20_01_44_top';'05-18-2016_20_00_52_top';'05-18-2016_19_59_59_top'};
+bgimagesList={};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',330,'ROI1',[5,5,500,480]);
+
+%% Slicing less endcap power - no offset 05/18/2016
+
+momimagesList = {'05-18-2016_21_18_43_top';'05-18-2016_21_17_51_top';'05-18-2016_21_16_58_top';'05-18-2016_21_16_06_top';'05-18-2016_21_15_14_top';'05-18-2016_21_14_22_top';'05-18-2016_21_13_29_top';'05-18-2016_21_12_37_top';'05-18-2016_21_11_45_top';'05-18-2016_21_10_53_top'};
+bgimagesList={};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1.5,'Nsat',330,'ROI1',[5,5,500,480]);
+
+%% Slicing higher endcap power 05-19-2016
+
+momimagesList = {'05-19-2016_22_52_00_top';'05-19-2016_22_51_07_top';'05-19-2016_22_50_15_top';'05-19-2016_22_49_23_top';'05-19-2016_22_48_31_top';'05-19-2016_22_47_38_top';'05-19-2016_22_46_46_top';'05-19-2016_22_45_54_top';'05-19-2016_22_45_02_top';'05-19-2016_22_44_09_top';'05-19-2016_22_43_17_top';'05-19-2016_22_42_25_top';'05-19-2016_22_41_33_top';'05-19-2016_22_40_40_top';'05-19-2016_22_39_48_top';'05-19-2016_22_38_56_top';'05-19-2016_22_38_04_top';'05-19-2016_22_37_11_top';'05-19-2016_22_36_19_top';'05-19-2016_22_35_27_top';'05-19-2016_22_34_34_top';'05-19-2016_22_33_42_top';'05-19-2016_22_31_57_top';'05-19-2016_22_19_46_top';'05-19-2016_22_16_17_top';'05-19-2016_22_15_25_top'};
+bgimagesList={};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',330,'ROI1',[5,5,500,480]);
+
+%% No Slicing higher endcap power 05-19-2016
+
+momimagesList = {'05-19-2016_22_55_50_top';'05-19-2016_22_54_57_top';'05-19-2016_22_54_05_top';'05-19-2016_22_53_12_top'};
+bgimagesList={};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',330,'ROI1',[5,5,500,480]);
+
+
+%% more evap 05-19-2016
+momimagesList = {'05-19-2016_23_40_14_top';'05-19-2016_23_39_22_top';'05-19-2016_23_38_30_top';'05-19-2016_23_37_38_top';'05-19-2016_23_36_45_top';'05-19-2016_23_35_53_top';'05-19-2016_23_35_01_top';'05-19-2016_23_34_09_top';'05-19-2016_23_33_16_top';'05-19-2016_23_32_24_top';'05-19-2016_23_31_32_top';'05-19-2016_23_30_40_top';'05-19-2016_23_29_47_top';'05-19-2016_23_28_55_top';'05-19-2016_23_28_03_top';'05-19-2016_23_27_11_top';'05-19-2016_23_26_18_top';'05-19-2016_23_25_26_top';'05-19-2016_23_24_34_top';'05-19-2016_23_19_34_top';'05-19-2016_23_18_42_top';'05-19-2016_23_17_50_top';'05-19-2016_23_16_57_top';'05-19-2016_23_16_05_top';'05-19-2016_23_15_13_top';'05-19-2016_23_14_21_top';'05-19-2016_23_12_36_top';'05-19-2016_23_11_44_top';'05-19-2016_23_10_52_top';'05-19-2016_23_09_59_top';'05-19-2016_23_09_07_top';'05-19-2016_23_08_15_top';'05-19-2016_23_07_23_top';'05-19-2016_23_06_31_top'};
+bgimagesList={};
+out4=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,90,'SM',3,'Fudge',1,'Nsat',330,'ROI1',[5,5,500,480]);
+
+%% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%% MAY 20   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% Run1
+momimagesList = {'05-20-2016_22_17_28_top';'05-20-2016_22_16_35_top';'05-20-2016_22_15_41_top';'05-20-2016_22_14_48_top';'05-20-2016_22_13_30_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',1,'Nsat',330,'ROI1',[160,5,170,480],'volume',(63*1.39e-6)*pi*(122)*(142)*(1.022e-6)^2);
+
+%% Run2
+momimagesList = {'05-20-2016_22_51_46_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',1,'Nsat',330,'ROI1',[160,5,170,480],'volume',(63*1.39e-6)*pi*(122)*(142)*(1.022e-6)^2);
+%% Run3
+momimagesList = {'05-20-2016_23_05_43_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',1,'Nsat',330,'ROI1',[160,5,170,480],'volume',(63*1.39e-6)*pi*(122)*(142)*(1.022e-6)^2);
+
+
+
+
+%% %%%%%%%%%%%%%%% MAY 21%%%%%%%%%%%%%%%%%%%%%%
+
+
+%% No slicing
+momimagesList ={'05-21-2016_20_25_50_top';'05-21-2016_20_24_57_top';'05-21-2016_20_24_05_top';'05-21-2016_20_22_47_top';'05-21-2016_20_21_54_top';'05-21-2016_20_21_02_top';'05-21-2016_20_20_09_top';'05-21-2016_20_19_17_top';'05-21-2016_20_18_25_top';'05-21-2016_20_17_32_top';'05-21-2016_20_16_40_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',3,'Nsat',330,'ROI1',[160,5,200,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2);
+
+
+%% slicing
+momimagesList ={'05-21-2016_20_47_55_top';'05-21-2016_20_45_48_top';'05-21-2016_20_44_55_top';'05-21-2016_20_44_03_top';'05-21-2016_20_43_10_top';'05-21-2016_20_42_18_top';'05-21-2016_20_35_57_top';'05-21-2016_20_35_04_top';'05-21-2016_20_34_11_top';'05-21-2016_20_31_34_top';'05-21-2016_20_29_49_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',3,'Nsat',330,'ROI1',[160,5,200,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2);
+
+
+%% slicing + no green
+momimagesList ={'05-21-2016_21_05_43_top';'05-21-2016_21_03_16_top';'05-21-2016_21_02_23_top';'05-21-2016_21_01_31_top';'05-21-2016_21_00_39_top';'05-21-2016_20_59_46_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',3,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2);
+
+
+
+
+%% no slicing + no green
+momimagesList ={'05-21-2016_21_06_48_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',3,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2);
+
+
+%% more minorities (-7dbm
+momimagesList ={'05-21-2016_21_19_09_top';'05-21-2016_21_18_16_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',1, ...
+    'Fudge',3,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2);
+
+%%
+momimagesList ={'06-10-2016_21_58_23_top';'06-10-2016_21_57_28_top';'06-10-2016_21_56_33_top';'06-10-2016_21_55_38_top';'06-10-2016_21_54_43_top';'06-10-2016_21_53_48_top';'06-10-2016_21_52_53_top';'06-10-2016_21_51_58_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2/4);
+%%
+momimagesList ={'06-10-2016_23_08_46_top';'06-10-2016_23_07_51_top';'06-10-2016_23_06_56_top';'06-10-2016_23_06_01_top';'06-10-2016_23_05_06_top';'06-10-2016_23_04_11_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2/4);
+%%
+momimagesList ={'06-10-2016_23_26_05_top';'06-10-2016_23_24_15_top';'06-10-2016_23_22_12_top';'06-10-2016_23_20_22_top';'06-10-2016_23_18_32_top'};
+bgimagesList={'06-10-2016_23_33_57_top';'06-10-2016_23_32_07_top';'06-10-2016_23_30_16_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2/4);
+%%
+momimagesList ={'06-10-2016_23_41_11_top';'06-10-2016_23_39_21_top';'06-10-2016_23_37_31_top'};
+bgimagesList={'06-10-2016_23_51_16_top';'06-10-2016_23_47_35_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2/4);
+%%
+momimagesList ={'06-13-2016_18_06_32_top';'06-13-2016_17_54_20_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2/4);
+%%
+momimagesList ={'06-13-2016_18_28_24_top','06-13-2016_18_29_19_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(63*1.39e-6)*pi*(122)*(120)*(1.022e-6)^2/4);
+%% June 14 with B ramp to zero crossing - trap averaged
+momimagesList ={'06-14-2016_14_23_37_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+
+%% June 14 with B ramp to zero crossing - not trap averaged
+momimagesList ={'06-14-2016_15_17_16_top';'06-14-2016_15_16_21_top';'06-14-2016_15_15_26_top';'06-14-2016_15_13_26_top';'06-14-2016_15_12_00_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+
+%% June 14 with B ramp to zero crossing - not trap averaged
+momimagesList ={'06-14-2016_15_36_21_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+
+%% June 14 with B ramp to zero crossing - box with varying atoms
+momimagesList ={'06-14-2016_15_36_21_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+momimagesList ={'06-14-2016_15_35_26_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_2 = outp;
+momimagesList ={'06-14-2016_15_33_18_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_3 = outp;
+momimagesList ={'06-14-2016_15_32_23_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_4 = outp;
+figure
+plot(outp_1.kzBin,outp_1.ffit)
+hold all
+plot(outp_1.kzBin,outp_1.fk)
+plot(outp_2.kzBin,outp_2.fk)
+plot(outp_2.kzBin,outp_2.ffit)
+plot(outp_3.kzBin,outp_3.fk)
+plot(outp_3.kzBin,outp_3.ffit)
+plot(outp_4.kzBin,outp_4.fk)
+plot(outp_4.kzBin,outp_4.ffit)
+
+
+
+%% June 14 with B ramp to zero crossing - tof in ODT + slicing
+momimagesList ={'06-14-2016_16_10_39_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+%% June 14 with B ramp to zero crossing - tof in ODT + slicing
+momimagesList ={'06-14-2016_16_15_40_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',90,'SM',3, ...
+    'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+
+%% June 14 with B ramp to zero crossing - box with varying atoms odt + slicing
+%0.3
+momimagesList ={'06-14-2016_17_05_46_top';'06-14-2016_17_04_51_top';'06-14-2016_17_03_56_top';'06-14-2016_17_03_01_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+%0.2
+momimagesList ={'06-14-2016_17_11_13_top';'06-14-2016_17_10_18_top';'06-14-2016_17_09_23_top';'06-14-2016_17_06_58_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_2 = outp;
+%0.5
+momimagesList ={'06-14-2016_17_15_29_top';'06-14-2016_17_13_58_top';'06-14-2016_17_13_03_top';'06-14-2016_17_12_08_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_3 = outp;
+%0.1
+momimagesList ={'06-14-2016_17_28_30_top';'06-14-2016_17_27_35_top';'06-14-2016_17_26_40_top';'06-14-2016_17_25_45_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_4 = outp;
+%0.05
+momimagesList ={'06-14-2016_17_32_37_top';'06-14-2016_17_31_42_top';'06-14-2016_17_30_47_top';'06-14-2016_17_29_25_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_5 = outp;
+%0.07
+momimagesList ={'06-14-2016_17_40_41_top';'06-14-2016_17_39_46_top';'06-14-2016_17_38_51_top';'06-14-2016_17_37_56_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_6 = outp;
+%0.45
+momimagesList ={'06-14-2016_17_55_38_top';'06-14-2016_17_53_09_top';'06-14-2016_17_52_14_top';'06-14-2016_17_50_24_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_7 = outp;
+%0.15
+momimagesList ={'06-14-2016_17_59_19_top';'06-14-2016_17_58_24_top';'06-14-2016_17_57_28_top';'06-14-2016_17_56_33_top'};
+bgimagesList={'06-14-2016_17_45_48_top';'06-14-2016_17_44_53_top';'06-14-2016_17_43_58_top';'06-14-2016_17_42_07_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',50,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,500,480],'volume',(70*1.39e-6)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_8 = outp;
+
+figure
+hold all
+plot(outp_3.kzBin,outp_3.fk)
+plot(outp_3.kzBin,outp_3.ffit)
+plot(outp_7.kzBin,outp_7.fk)
+plot(outp_7.kzBin,outp_7.ffit)
+plot(outp_1.kzBin,outp_1.ffit)
+plot(outp_1.kzBin,outp_1.fk)
+plot(outp_2.kzBin,outp_2.fk)
+plot(outp_2.kzBin,outp_2.ffit)
+plot(outp_8.kzBin,outp_8.fk)
+plot(outp_8.kzBin,outp_8.ffit)
+plot(outp_4.kzBin,outp_4.fk)
+plot(outp_4.kzBin,outp_4.ffit)
+plot(outp_6.kzBin,outp_6.fk)
+plot(outp_6.kzBin,outp_6.ffit)
+plot(outp_5.kzBin,outp_5.fk)
+plot(outp_5.kzBin,outp_5.ffit)
+
+%% %%%%%%%%%%%%   June 15 Data   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% trials 0.9 evap
+momimagesList ={'06-15-2016_20_57_50_top','06-15-2016_20_59_09_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% trials 0.4 evap
+momimagesList ={'06-15-2016_21_03_46_top','06-15-2016_21_04_47_top','06-15-2016_21_05_44_top','06-15-2016_21_17_48_top','06-15-2016_21_19_38_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,510,480],'volume',(52*1.39e-6*1.5)*pi*(125)*(98)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% trials 0.6 evap
+momimagesList ={'06-15-2016_21_36_31_top';'06-15-2016_21_35_36_top';'06-15-2016_21_32_14_top';'06-15-2016_21_38_42_top';'06-15-2016_21_39_37_top';'06-15-2016_21_40_32_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,510,480],'volume',(52*1.39e-6*1.5)*pi*(125)*(98)*(1.022e-6)^2/4);
+outp_1 = outp;
 
 %% Defringed
 
@@ -405,3 +769,118 @@ xlabel('k_F from total atom number (m^{-1})');
 ylabel('k_F from Fermi-Dirac distribution (m^{-1})');
 legend('show')
 hold off
+
+
+%% %%%%%%%%%%%%   June 16 Data   %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%% -17dBm
+momimagesList ={'06-16-2016_14_43_32_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% Really gud
+momimagesList ={'06-16-2016_15_05_47_top';'06-16-2016_15_04_53_top';'06-16-2016_15_03_59_top';'06-16-2016_15_03_05_top';'06-16-2016_15_02_11_top';'06-16-2016_14_58_58_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% Noslice
+momimagesList ={'06-16-2016_15_14_39_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',630,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% slice
+momimagesList ={'06-16-2016_15_17_27_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',330,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% high intensity
+momimagesList ={'06-16-2016_15_21_30_top'};
+bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',1230,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% low intensity
+momimagesList ={'06-16-2016_17_35_35_top';'06-16-2016_17_34_41_top';'06-16-2016_17_33_47_top';'06-16-2016_17_32_53_top'};
+bgimagesList={'06-16-2016_17_38_16_top';'06-16-2016_17_37_22_top';'06-16-2016_17_36_29_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',130,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% test
+momimagesList ={'06-16-2016_21_58_54_top'};
+%bgimagesList={};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp_1 = outp;
+
+%% vary atoms:
+%0.2
+momimagesList ={'06-16-2016_17_35_35_top';'06-16-2016_17_34_41_top';'06-16-2016_17_33_47_top';'06-16-2016_17_32_53_top'};
+bgimagesList={'06-16-2016_17_38_16_top';'06-16-2016_17_37_22_top';'06-16-2016_17_36_29_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp.green = 0.2;
+atomvary(1) = outp;
+%0.4
+momimagesList ={'06-16-2016_21_14_47_top'};
+bgimagesList={'06-16-2016_17_38_16_top';'06-16-2016_17_37_22_top';'06-16-2016_17_36_29_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp.green = 0.2;
+atomvary(2) = outp;
+
+
+figure
+hold all
+for i=1:length(atomvary)
+    outp = atomvary(i);
+    plot(outp.kzBin,outp.ffit,'DisplayName',strcat(['fit: T=',num2str(outp.T,'%2.2f'),'; kf=',num2str(outp.kF_Fit/1e6,'%2.2f')]))
+    plot(outp.kzBin,outp.fk,'DisplayName',strcat(['evap=',num2str(outp.green,'%2.2f')]))
+end
+legend on
+
+%% vary T:
+
+bgimagesList={'06-16-2016_17_38_16_top';'06-16-2016_17_37_22_top';'06-16-2016_17_36_29_top'};
+
+%hot
+momimagesList ={'06-16-2016_21_46_12_top';'06-16-2016_21_45_18_top';'06-16-2016_21_44_23_top';'06-16-2016_21_43_29_top';'06-16-2016_21_42_34_top';'06-16-2016_21_38_11_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp.green = 0.2;
+tvary(1) = outp;
+
+%medium
+momimagesList ={'06-16-2016_21_54_05_top';'06-16-2016_21_53_10_top';'06-16-2016_21_52_16_top';'06-16-2016_21_51_21_top';'06-16-2016_21_50_27_top';'06-16-2016_21_49_32_top';'06-16-2016_21_48_37_top';'06-16-2016_21_47_43_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp.green = 0.2;
+tvary(2) = outp;
+
+%cold
+momimagesList ={'06-16-2016_22_02_30_top';'06-16-2016_22_01_36_top';'06-16-2016_22_00_42_top';'06-16-2016_21_59_48_top';'06-16-2016_21_58_54_top';'06-16-2016_21_58_00_top'};
+outp=momentumfocusRV(momimagesList,bgimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[1,5,510,480],'volume',(70*1.39e-6*1.5)*pi*(125)*(90)*(1.022e-6)^2/4);
+outp.green = 0.2;
+tvary(3) = outp;
+
+figure
+hold all
+for i=1:length(tvary)
+    subplot(1,length(tvary),i)
+    outp = tvary(i);
+    plot(outp.kzBin,outp.ffit,'DisplayName',strcat(['fit: T=',num2str(outp.T,'%2.2f'),'; kf=',num2str(outp.kF_Fit/1e6,'%2.2f')]))
+    ylim([-0.1 1.05])
+    xlim([0 7e6])
+    hold on
+    plot(outp.kzBin,outp.fk,'.','MarkerSize',1'DisplayName','data')
+end

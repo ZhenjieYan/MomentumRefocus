@@ -22,7 +22,8 @@ function output = momentumfocusRV(momimages,bgimages,varargin)
 
 %%
 h=figure();
-pixellength=1.39*10^(-6);
+% pixellength=1.39*10^(-6);
+pixellength=1.39*10^(-6)*1.5;
 sigma0=0.215/2*10^(-12);
 Nsat=330;
 ROI1 = [205,5,150,480];
@@ -33,7 +34,7 @@ IfPolySmooth=0;
 IfTailTailor=1;
 Fudge=2.62;
 D=100;
-H=60;
+H=80;
 IfFourierFilter=0;
 IfFourierFilterBG=0;
 CutOffFactor=0.2;
@@ -44,6 +45,7 @@ IfSpline=1;
 SmoothingParam=1.2338479537501e-05;
 Volume=pi/4*D^2*H*pixellength^3;
 output.Volume=Volume;
+recalc = 0
 for i =1:length(varargin)
     if ischar(varargin{i})
         switch varargin{i}
@@ -80,9 +82,24 @@ for i =1:length(varargin)
                 SmoothingParam=varargin{i+1};
             case 'IfSpline'
                 IfSpline=varargin{i+1};
+            case 'D'
+                D = varargin{i+1};
+                recalc = 1;
+            case 'H'
+                H = varargin{i+1};
+                recalc = 1;
+            case 'volume'
+                Volume=varargin{i+1};
+                output.Volume=Volume;
         end
     end
 end
+
+if recalc
+    Volume=pi/4*D^2*H*pixellength^3;
+    output.Volume=Volume;
+end
+
 %% Import functions and data
 m= 9.96e-27;
 omega = 2*pi*23.9;
@@ -320,6 +337,7 @@ output.beta=beta;
 output.T=T;
 output.fk=fk;
 output.fkStd=fkStd;
+output.ffit = ffit;
 end
 
 function [k,nofk,fitresult] = plotnofk(kzsqedges,nmeans,sm)
