@@ -23,7 +23,7 @@ function output = momentumfocusRV(momimages,bgimages,varargin)
 %%
 h=figure();
 % pixellength=1.39*10^(-6);
-pixellength=1.39*10^(-6)*1.5;
+pixellength=1.39*10^(-6)*1.8;
 sigma0=0.215/2*10^(-12);
 Nsat=330;
 ROI1 = [205,5,150,480];
