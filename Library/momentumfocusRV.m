@@ -22,8 +22,8 @@ function output = momentumfocusRV(momimages,bgimages,varargin)
 
 %%
 h=figure();
-% pixellength=1.39*10^(-6);
-pixellength=1.39*10^(-6)*1.8;
+pixellength=1.39*10^(-6);
+% pixellength=1.39*10^(-6)*1.8;
 sigma0=0.215/2*10^(-12);
 Nsat=330;
 ROI1 = [205,5,150,480];
@@ -45,7 +45,7 @@ IfSpline=1;
 SmoothingParam=1.2338479537501e-05;
 Volume=pi/4*D^2*H*pixellength^3;
 output.Volume=Volume;
-recalc = 0
+recalc = 0;
 for i =1:length(varargin)
     if ischar(varargin{i})
         switch varargin{i}
@@ -432,7 +432,7 @@ function fitresult = plotnvskz(kz,n)
     ft = fittype( 'a*log(1+exp(beta*(mu-(x-x0)^2)))+d', 'independent', 'x', 'dependent', 'y' );
     opts = fitoptions( 'Method', 'NonlinearLeastSquares' );
     opts.Display = 'Off';
-    opts.StartPoint = [30 2 0 8 4];
+    opts.StartPoint = [30 0.6 10 7 8];
 
     % Fit model to data.
     [fitresult, ~] = fit( xData, yData, ft, opts );
