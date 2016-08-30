@@ -1127,14 +1127,7 @@ end
 bgimages = {'08-29-2016_21_59_05_top'};
 volume_factor = (140*0.7e-6*1.8)*pi*(125)*(90)*(1.022e-6)^2/4;
 
-%DS5 sample
-momimagesList ={'08-29-2016_22_00_52_top'};
-outp=momentumfocusRV(momimagesList,bgimages,'Nbins',100,'SM',3, ...
-'Fudge',1.9,'Nsat',Inf,'ROI1',[400,1000,1951,2250],'volume',volume_factor);
-
-%DS6 sample
-momimagesList ={'08-29-2016_22_33_02_top'};
-outp=momentumfocusRV(momimagesList,bgimages,'Nbins',100,'SM',3, ...
-'Fudge',1.7,'Nsat',Inf,'ROI1',[400,1000,1951,2250],'volume',volume_factor);
-
+momimagesList ={'08-29-2016_21_46_26_top';'08-29-2016_21_45_30_top'};
+outp=momentumfocusRV(momimagesList,'Nbins',100,'SM',3, ...
+'Fudge',1,'Nsat',750,'ROI1',[440,1030,1891,2210],'volume',volume_factor);
 

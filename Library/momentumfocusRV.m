@@ -22,7 +22,7 @@ function output = momentumfocusRV(momimages,bgimages,varargin)
 
 %%
 h=figure();
-pixellength=1.39*10^(-6);
+pixellength=0.7*10^(-6);
 % pixellength=1.39*10^(-6)*1.8;
 sigma0=0.215/2*10^(-12);
 Nsat=330;
@@ -55,6 +55,8 @@ for i =1:length(varargin)
                 nbins=varargin{i+1};
             case 'ROI1'
                 ROI1=varargin{i+1};
+            case 'pixellength'
+                pixellength=varargin{i+1};
             case 'IfTailTailor'
                 IfTailTailor=varargin{i+1};
             case 'TailRange'
