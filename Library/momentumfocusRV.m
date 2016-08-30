@@ -22,7 +22,7 @@ function output = momentumfocusRV(momimages,bgimages,varargin)
 
 %%
 h=figure();
-pixellength=1.39*10^(-6);
+pixellength=2.52*10^(-6);
 sigma0=0.215/2*10^(-12);
 Nsat=330;
 ROI1 = [205,5,150,480];
@@ -43,7 +43,8 @@ IfDerInd=0;
 IfSpline=1;
 SmoothingParam=1.2338479537501e-05;
 Volume=pi/4*D^2*H*pixellength^3;
-output.Volume=Volume;
+IfRotate=0;
+Angle=0;
 for i =1:length(varargin)
     if ischar(varargin{i})
         switch varargin{i}
@@ -80,9 +81,18 @@ for i =1:length(varargin)
                 SmoothingParam=varargin{i+1};
             case 'IfSpline'
                 IfSpline=varargin{i+1};
+            case 'Volume'
+                Volume=varargin{i+1};
+            case 'IfRotate'
+                IfRotate=varargin{i+1};
+            case 'Angle'
+                Angle=varargin{i+1};
+            case 'pixellength'
+                pixellength=varargin{i+1};
         end
     end
 end
+output.Volume=Volume;
 %% Import functions and data
 m= 9.96e-27;
 omega = 2*pi*23.9;
@@ -144,6 +154,15 @@ momcrop=momcrop*Fudge;
 %% Do the Fourier Filter
 if IfFourierFilter
     momcrop=FourierFilter(momcrop,CutOffFactor);
+    momavgcrop=FourierFilter(momavgcrop,CutOffFactor);
+    bgavgcrop=FourierFilter(bgavgcrop,CutOffFactor);
+end
+%% Do the rotation
+
+if IfRotate
+    momcrop=imrotate(momcrop,Angle);
+    momavgcrop=imrotate(momavgcrop,Angle);
+    bgavgcrop=imrotate(bgavgcrop,Angle);
 end
 
 %% Get profiles

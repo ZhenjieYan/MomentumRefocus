@@ -276,7 +276,7 @@ output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1);
 
 %% T/T_F=0.1
 
-DataSetName='T010_20160404';
+DataSetName='/Data/T010_20160404';
 momimages={'04-04-2016_23_49_17_top';'04-04-2016_23_48_19_top';'04-04-2016_23_47_21_top';'04-04-2016_23_46_23_top';'04-04-2016_23_45_25_top';'04-04-2016_23_44_28_top';'04-04-2016_23_43_30_top';'04-04-2016_23_42_32_top';'04-04-2016_23_41_34_top';'04-04-2016_23_40_36_top';'04-04-2016_23_39_38_top';'04-04-2016_23_38_40_top';'04-04-2016_23_37_42_top';'04-04-2016_23_36_44_top';'04-04-2016_23_35_46_top';'04-04-2016_23_34_49_top';'04-04-2016_23_33_51_top'};
 bgimages={'04-04-2016_22_37_22_top';'04-04-2016_22_36_26_top';'04-04-2016_22_34_15_top'};
 momimagesList={};
@@ -304,7 +304,7 @@ output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1);
 
 %% T/T_F=0.2
 
-DataSetName='T020_20160406';
+DataSetName='/Data/T020_20160406';
 momimages={'04-06-2016_22_21_15_top';'04-06-2016_22_20_18_top';'04-06-2016_22_19_22_top';'04-06-2016_22_18_25_top';'04-06-2016_22_17_28_top';'04-06-2016_22_16_32_top';'04-06-2016_22_15_35_top';'04-06-2016_22_14_38_top';'04-06-2016_22_12_11_top';'04-06-2016_22_11_14_top';'04-06-2016_22_10_18_top';'04-06-2016_22_09_21_top';'04-06-2016_22_08_25_top';'04-06-2016_22_07_28_top';'04-06-2016_22_06_31_top'};%
 bgimages={'04-06-2016_23_12_03_top';'04-06-2016_23_11_12_top';'04-06-2016_23_10_21_top';'04-06-2016_23_09_29_top';'04-06-2016_23_08_38_top';'04-06-2016_23_07_46_top';'04-06-2016_23_06_55_top';'04-06-2016_23_06_03_top';'04-06-2016_23_05_12_top';'04-06-2016_23_04_20_top';'04-06-2016_23_03_29_top';'04-06-2016_23_02_37_top';'04-06-2016_23_01_46_top';'04-06-2016_23_00_55_top';'04-06-2016_23_00_03_top';'04-06-2016_22_59_12_top';'04-06-2016_22_58_20_top';'04-06-2016_22_57_29_top';'04-06-2016_22_56_37_top';'04-06-2016_22_55_46_top';'04-06-2016_22_54_54_top'};
 momimagesList={};
@@ -322,29 +322,127 @@ for i=1:length(bgimages)
     toc
 end
 save(DataSetName,'momimagesList','bgimagesList');
-
-
 %%
 load('Data/T020_20160406')
 output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,50,'SM',3,'Fudge',1,'Nsat',inf);
 
-%% Defringed
+%% T018_20160616
 
-momimages={'03-12-2016_01_54_06_top';'03-12-2016_01_53_18_top';'03-12-2016_01_52_31_top';'03-12-2016_01_51_43_top';'03-12-2016_01_49_03_top';'03-12-2016_01_48_16_top';'03-12-2016_01_46_41_top';'03-12-2016_01_45_07_top';'03-12-2016_01_40_40_top'};
-N=length(momimages);
-momlist=cell(N,1);
-for i=1:N
-    momlist{i}=fitsread(['/Volumes/Processed Data/Temporary/2016-03-12/',momimages{i},'_defringed.fits']);
+DataSetName='T018_20160616';
+momimages={'06-16-2016_22_02_30_top';'06-16-2016_22_01_36_top';'06-16-2016_22_00_42_top';'06-16-2016_21_59_48_top';'06-16-2016_21_58_54_top';'06-16-2016_21_58_00_top'};
+bgimages={'06-16-2016_22_14_59_top';'06-16-2016_22_14_05_top';'06-16-2016_22_13_11_top';'06-16-2016_22_12_17_top';'06-16-2016_22_11_23_top';'06-16-2016_22_10_28_top';'06-16-2016_22_09_34_top'};
+momimagesList={};
+bgimagesList={};
+for i=1:length(momimages)
+    tic
+    [~,tempImg]=imagedata(momimages{i});
+    momimagesList=[momimagesList;tempImg];
+    toc
 end
-bgimages={'03-12-2016_01_19_51_top'};
-%%
-output=momentumfocusRV(momlist,bgimages,'Nbins' ,60,'SM',4);
+for i=1:length(bgimages)
+    tic
+    [~,tempImg]=imagedata(bgimages{i});
+    bgimagesList=[bgimagesList;tempImg];
+    toc
+end
+save(DataSetName,'momimagesList','bgimagesList');
 
-%%
-scatter(kFNlist,kFFitlist,'DisplayName','Experimental Data');
-hold on
-line([0,4e6],[0,4e6],'DisplayName','y=x','color','r','linewidth',2);
-xlabel('k_F from total atom number (m^{-1})');
-ylabel('k_F from Fermi-Dirac distribution (m^{-1})');
-legend('show')
-hold off
+%% T018_20160616
+load('Data/T018_20160616');
+output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,200,'SM',3,'Fudge',1,'ROI1',[1,5,510,480],'Nsat',750,'Volume',100*pi*141^2/4/10^18);
+
+%% T025_20160616
+
+DataSetName='T025_20160616';
+momimages={'06-16-2016_21_54_05_top';'06-16-2016_21_53_10_top';'06-16-2016_21_52_16_top';'06-16-2016_21_51_21_top';'06-16-2016_21_50_27_top';'06-16-2016_21_49_32_top';'06-16-2016_21_48_37_top';'06-16-2016_21_47_43_top'};
+bgimages={'06-16-2016_22_14_59_top';'06-16-2016_22_14_05_top';'06-16-2016_22_13_11_top';'06-16-2016_22_12_17_top';'06-16-2016_22_11_23_top';'06-16-2016_22_10_28_top';'06-16-2016_22_09_34_top'};
+momimagesList={};
+bgimagesList={};
+for i=1:length(momimages)
+    tic
+    [~,tempImg]=imagedata(momimages{i});
+    momimagesList=[momimagesList;tempImg];
+    toc
+end
+for i=1:length(bgimages)
+    tic
+    [~,tempImg]=imagedata(bgimages{i});
+    bgimagesList=[bgimagesList;tempImg];
+    toc
+end
+save(DataSetName,'momimagesList','bgimagesList');
+
+%% T025_20160616
+load('Data/T025_20160616');
+output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,200,'SM',3,'Fudge',1,'ROI1',[1,5,510,480],'Nsat',750,'Volume',100*pi*141^2/4/10^18);
+
+%% T043_20160616
+
+DataSetName='T043_20160616';
+momimages={'06-16-2016_21_46_12_top';'06-16-2016_21_45_18_top';'06-16-2016_21_44_23_top';'06-16-2016_21_43_29_top';'06-16-2016_21_42_34_top';'06-16-2016_21_38_11_top'};
+bgimages={'06-16-2016_22_14_59_top';'06-16-2016_22_14_05_top';'06-16-2016_22_13_11_top';'06-16-2016_22_12_17_top';'06-16-2016_22_11_23_top';'06-16-2016_22_10_28_top';'06-16-2016_22_09_34_top'};
+momimagesList={};
+bgimagesList={};
+for i=1:length(momimages)
+    tic
+    [~,tempImg]=imagedata(momimages{i});
+    momimagesList=[momimagesList;tempImg];
+    toc
+end
+for i=1:length(bgimages)
+    tic
+    [~,tempImg]=imagedata(bgimages{i});
+    bgimagesList=[bgimagesList;tempImg];
+    toc
+end
+save(DataSetName,'momimagesList','bgimagesList');
+%% T043_20160616
+load('Data/T043_20160616');
+output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',3,'Fudge',1,'ROI1',[1,5,510,480],'Nsat',750,'Volume',100*pi*141^2/4/10^18);
+
+%% T068_20160616
+
+DataSetName='T068_20160616';
+momimages={'06-16-2016_22_33_46_top';'06-16-2016_22_32_51_top';'06-16-2016_22_31_56_top';'06-16-2016_22_31_02_top';'06-16-2016_22_30_07_top';'06-16-2016_22_29_13_top';'06-16-2016_22_28_18_top';'06-16-2016_22_27_24_top'};
+bgimages={'06-16-2016_22_14_59_top';'06-16-2016_22_14_05_top';'06-16-2016_22_13_11_top';'06-16-2016_22_12_17_top';'06-16-2016_22_11_23_top';'06-16-2016_22_10_28_top';'06-16-2016_22_09_34_top'};
+momimagesList={};
+bgimagesList={};
+for i=1:length(momimages)
+    tic
+    [~,tempImg]=imagedata(momimages{i});
+    momimagesList=[momimagesList;tempImg];
+    toc
+end
+for i=1:length(bgimages)
+    tic
+    [~,tempImg]=imagedata(bgimages{i});
+    bgimagesList=[bgimagesList;tempImg];
+    toc
+end
+save(DataSetName,'momimagesList','bgimagesList');
+
+%% T068_20160616
+load('Data/T068_20160616');
+output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',3,'Fudge',1,'ROI1',[1,5,510,480],'Nsat',750,'Volume',100*pi*141^2/4/10^18);
+%% T014_20160616
+DataSetName='T014_20160616';
+momimages={'06-16-2016_22_56_38_top';'06-16-2016_22_16_14_top';'06-16-2016_22_57_32_top'};
+bgimages={'06-16-2016_22_14_59_top';'06-16-2016_22_14_05_top';'06-16-2016_22_13_11_top';'06-16-2016_22_12_17_top';'06-16-2016_22_11_23_top';'06-16-2016_22_10_28_top';'06-16-2016_22_09_34_top'};
+momimagesList={};
+bgimagesList={};
+for i=1:length(momimages)
+    tic
+    [~,tempImg]=imagedata(momimages{i});
+    momimagesList=[momimagesList;tempImg];
+    toc
+end
+for i=1:length(bgimages)
+    tic
+    [~,tempImg]=imagedata(bgimages{i});
+    bgimagesList=[bgimagesList;tempImg];
+    toc
+end
+save(DataSetName,'momimagesList','bgimagesList');
+%% T014_20160616
+load('Data/T014_20160616');
+output=momentumfocusRV(momimagesList,bgimagesList,'Nbins' ,100,'SM',3,'Fudge',1,'ROI1',[1,5,510,480],'Nsat',750,'Volume',100*pi*141^2/4/10^18);
