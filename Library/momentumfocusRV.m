@@ -34,6 +34,7 @@ IfTailTailor=1;
 Fudge=2.62;
 D=86.3;
 H=28.7;
+IfFudge=1;
 IfFourierFilter=0;
 IfFourierFilterBG=0;
 CutOffFactor=0.2;
@@ -89,6 +90,8 @@ for i =1:length(varargin)
                 Angle=varargin{i+1};
             case 'pixellength'
                 pixellength=varargin{i+1};
+            case 'IfFudge'
+                IfFudge=varargin{i+1};
         end
     end
 end
@@ -109,7 +112,7 @@ for i=1:Nmom
         tempraw=momimages{i};
     end
     Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp=CleanImage(Ntemp);
+    Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3))=CleanImage(Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3)));
     MomImgPack{i}=Ntemp;
     momavg=momavg+Ntemp;
     toc
@@ -128,7 +131,7 @@ for i=1:Nbg
         tempraw=bgimages{i};
     end
     Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp=CleanImage(Ntemp);
+    Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3))=CleanImage(Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3)));
     BgPack{i}=Ntemp;
     bgavg=bgavg+Ntemp;
     toc
@@ -307,7 +310,12 @@ fkStd=-8*pi^2*fkStd;
 subplot(2,2,4);
 kzBin=sqrt(kzsqBin);
 kzFit=kzBin/k0;
-[P,ffit]=FDfit(kzFit,fk);
+if IfFudge
+    [P,ffit]=FDfit(kzFit,fk);
+else
+    [P,ffit]=FDfitwoFudge(kzFit,fk);
+    P=[1,P];
+end
 P(3)=P(3)*k0^2;
 [EF_Fit,n_Fit,kF_Fit,beta]=GetEF(P);
 T=1/(beta*EF_Fit);

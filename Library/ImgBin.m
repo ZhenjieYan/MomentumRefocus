@@ -7,7 +7,7 @@ m=size(img,3);
 temp=imresize(img(:,:,1),1/Bin,'Box');
 imgout=zeros(size(temp,1),size(temp,2),m);
 for i=1:m
-    imgout(:,:,m)=imresize(img(:,:,m),1/Bin,'Box');
+    imgout(:,:,i)=imresize(img(:,:,i),1/Bin,'Box');
 end
 
 end
