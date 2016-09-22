@@ -46,6 +46,8 @@ SmoothingParam=1.2338479537501e-05;
 Volume=pi/4*D^2*H*pixellength^3;
 IfRotate=0;
 Angle=0;
+ImageTime=10;
+IfLookUpTable=0;
 for i =1:length(varargin)
     if ischar(varargin{i})
         switch varargin{i}
@@ -92,6 +94,10 @@ for i =1:length(varargin)
                 pixellength=varargin{i+1};
             case 'IfFudge'
                 IfFudge=varargin{i+1};
+            case 'IfLookUpTable'
+                IfLookUpTable=varargin{i+1};
+            case 'ImageTime'
+                ImageTime=varargin{i+1};
         end
     end
 end
@@ -101,21 +107,31 @@ m= 9.96e-27;
 omega = 2*pi*23.9;
 hbar = 1.055e-34;
 %% Average images
+ROIcon=[ROI1(1),ROI1(2),ROI1(1)+ROI1(3),ROI1(2)+ROI1(4)];
 Nmom=length(momimages);
 momavg=0;
 MomImgPack=cell(Nmom,1);
 for i=1:Nmom
-    tic
     if isstr(momimages{i})
         [~,tempraw]=imagedata(momimages{i});
     else
         tempraw=momimages{i};
     end
-    Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3))=CleanImage(Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3)));
+    
+    if size(tempraw,3)>1
+        if ~IfLookUpTable
+            Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
+        else
+            Ntemp=0*tempraw(:,:,1);
+            Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=AtomNumberLUT(tempraw(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3),:),pixellength.^2,sigma0, Nsat,ImageTime); 
+        end
+    else
+        Ntemp=tempraw;
+    end
+    Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=CleanImage(Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3)));
     MomImgPack{i}=Ntemp;
     momavg=momavg+Ntemp;
-    toc
+    
 end
 momavg=momavg/Nmom;
 output.MomImgPack=MomImgPack;
@@ -130,8 +146,19 @@ for i=1:Nbg
     else
         tempraw=bgimages{i};
     end
-    Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
-    Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3))=CleanImage(Ntemp(ROI1(2):ROI1(4),ROI1(1):ROI1(3)));
+    
+    if size(tempraw,3)>1
+        if ~IfLookUpTable
+            Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
+        else
+            Ntemp=0*tempraw(:,:,1);
+            Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=AtomNumberLUT(tempraw(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3),:),pixellength.^2,sigma0, Nsat,ImageTime); 
+        end
+    else
+        Ntemp=tempraw;
+    end  
+    
+    Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=CleanImage(Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3)));
     BgPack{i}=Ntemp;
     bgavg=bgavg+Ntemp;
     toc
@@ -145,6 +172,7 @@ end
 %% Crop Images
 momavgcrop=imcrop(momavg,ROI1);
 bgavgcrop=imcrop(bgavg,ROI1);
+
 
 %%
 if IfFourierFilterBG
@@ -241,6 +269,7 @@ kz=kz-kz0;
 
 n1dz=n/pixellength;
 n1dk=(n1dz/Volume)*hbar/(m*omega);
+n1dkz=n1dk;
 kzsq=kz.^2;
 
 [kzsq,B]=sort(kzsq);
@@ -248,9 +277,10 @@ n1dk=n1dk(B);
 if IfPolySmooth
     n1dk=PolySmooth(n1dk,kzsq,Points,orlder);
 end
+output.n1dkz=n1dkz;
 output.kz=kz;
-output.n1dofk=n1dk;
 output.n1dofz=n1dz;
+output.n1dofk=n1dk;
 output.kzsq=kzsq;
 
 %% Bin n1d(kz^2) 
@@ -441,7 +471,7 @@ function fitresult = plotnvskz(kz,n)
     ft = fittype( 'a*log(1+exp(beta*(mu-(x-x0)^2)))+d', 'independent', 'x', 'dependent', 'y' );
     opts = fitoptions( 'Method', 'NonlinearLeastSquares' );
     opts.Display = 'Off';
-    opts.StartPoint = [30 2 0 8 4];
+    opts.StartPoint = [30 2 0 8 sum(xData.*yData)/sum(yData)];
 
     % Fit model to data.
     [fitresult, ~] = fit( xData, yData, ft, opts );
