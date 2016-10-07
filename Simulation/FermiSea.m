@@ -3,7 +3,7 @@ mu0=1;
 z=16;
 V=@(r,z) (r.^z).*(r>-1);
 fk_local=@(k,mu,t) 1./(exp((1/t)*(k.^2-mu))+1);
-T_mu=0.20;
+T_mu=0.22;
 %%
 NK=4000;
 k=linspace(0,sqrt(mu0)*4,NK);
@@ -102,7 +102,7 @@ mask=kabs1Tilde<2;
 kabs1Tilde=kabs1Tilde(mask);
 fk1=fk1(mask);
 fk1StdMean=fk1StdMean(mask);
-scale=linspace(0.9,1.1,100);
+scale=linspace(0.8,1.2,100);
 
 %%
 Ki=scale*0;
@@ -121,6 +121,22 @@ plot(kabs1Tilde,fk1,'o')
 hold off
 xlim([0,2]);ylim([-0.1,1.1])
 xlabel('k/k_F');ylabel('n(k)');
+% %%
+% scalek=linspace(0.9,1.1,100);
+% scalef=linspace(0.9,1.1,100);
+% Ki2D=zeros(length(scalek),length(scalef))
+% for i=1:length(scalek)
+%     for j=1:length(scalef)
+%         kfitscale=k*scalek(i);
+%         fkfitscale=fk*scalef(j);
+%         fkint=interp1(kfitscale,fkfitscale,kabs1Tilde);
+%         Ki2D(i,j)=sum((fk1-fkint).^2);
+%     end
+% end
+%%
+
+
+
 
 %%
 figure1 = figure;
@@ -135,33 +151,33 @@ set(axes1,'XTick',[0 0.5 1 1.5 2],'XTickLabel',{'0','0.5','1','1.5','2'},'YTick'
 xlim([0,2]);ylim([-0.1,1.1])
 hold off
 set(axes1,'XColor',[0 0 0],'YColor',[0 0 0],'ZColor',[0 0 0])
-%%
-load('R16fit.mat');
-kfitscaleR16=kfitscale;
-fkR16=fk;
-load('R10fit.mat');
-kfitscaleR10=kfitscale;
-fkR10=fk;
-load('R16fitT020');
-kfitscaleR16T020=kfitscale;
-fkR16T020=fk;
-
-figure1 = figure;
-% Create axes
-axes1 = axes('Parent',figure1,'Units','inches','Position',[1,1,2.7,2.7],'XColorMode','manual','XColor',[1 1 0],'YColor',[1 0 0],'ZColor',[0 0 0]); 
-%plot(kfitscaleR16,fkR16,'-','color',[36,85,189]/255)
-plot(kfitscaleR16T020,fkR16T020,'-','color',[62,166,60]/255)
-hold on
-
-
-plot(kabs1FitTilde,fk1Fit,'-','color',[201,67,52]/255);
-
-errorbar1derr_Z(kabs1Tilde,fk1,fk1StdMean,'Marker','.','Markersize',10,'LineStyle','none','ErrLineWidth',0.75,'MarkerFaceColor',[49,115,255]/255,'MarkerEdgeColor',[49,115,255]/255,'ErrBarColor',[36/255,85/255,189/255]);
-set(axes1,'XTick',[0 0.5 1 1.5 2],'XTickLabel',{'0','0.5','1','1.5','2'},'YTick',[0 0.25 0.5 0.75  1],'YTickLabel',{'0','','0.5','','1'});
-%scatter(kabs1Tilde,fk1)
-xlim([0,2]);ylim([-0.1,1.1])
-hold off
-set(axes1,'XColor',[0 0 0],'YColor',[0 0 0],'ZColor',[0 0 0])
+% %%
+% load('R16fit.mat');
+% kfitscaleR16=kfitscale;
+% fkR16=fk;
+% load('R10fit.mat');
+% kfitscaleR10=kfitscale;
+% fkR10=fk;
+% load('R16fitT020');
+% kfitscaleR16T020=kfitscale;
+% fkR16T020=fk;
+% 
+% figure1 = figure;
+% % Create axes
+% axes1 = axes('Parent',figure1,'Units','inches','Position',[1,1,2.7,2.7],'XColorMode','manual','XColor',[1 1 0],'YColor',[1 0 0],'ZColor',[0 0 0]); 
+% %plot(kfitscaleR16,fkR16,'-','color',[36,85,189]/255)
+% 
+% hold on
+% plot(kfitscaleR16T020,fkR16T020,'-','color',[62,166,60]/255)
+% plot(kfitscaleR10,fkR10,'-','color','r')
+% %plot(kabs1FitTilde,fk1Fit,'-','color',[201,67,52]/255);
+% 
+% %errorbar1derr_Z(kabs1Tilde,fk1,fk1StdMean,'Marker','.','Markersize',10,'LineStyle','none','ErrLineWidth',0.75,'MarkerFaceColor',[49,115,255]/255,'MarkerEdgeColor',[49,115,255]/255,'ErrBarColor',[36/255,85/255,189/255]);
+% set(axes1,'XTick',[0 0.5 1 1.5 2],'XTickLabel',{'0','0.5','1','1.5','2'},'YTick',[0 0.25 0.5 0.75  1],'YTickLabel',{'0','','0.5','','1'});
+% %scatter(kabs1Tilde,fk1)
+% xlim([0,2]);ylim([-0.1,1.1])
+% hold off
+% set(axes1,'XColor',[0 0 0],'YColor',[0 0 0],'ZColor',[0 0 0])
 
 %%
 %Tmu=0.1, Ki=0.0592
@@ -177,3 +193,8 @@ set(axes1,'XColor',[0 0 0],'YColor',[0 0 0],'ZColor',[0 0 0])
 %Tmu=0.12,Ki=0.0167
 %Tmu=0.11,Ki=0.0175
 %Tmu=0.1,0.0211
+
+%%
+% Note: before I get the fitting for T/T_F=0.20 wrong, the figure in the supplementary material is actually
+% Z=10,T/mu=0.11
+% Also the case for R10fit, the parameter is Z=10, T/mu=0.11;

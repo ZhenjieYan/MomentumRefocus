@@ -39,7 +39,7 @@ IfFourierFilter=0;
 IfFourierFilterBG=0;
 CutOffFactor=0.2;
 Points=5;
-orlder=2;
+order=2;
 IfDerInd=0;
 IfSpline=1;
 SmoothingParam=1.2338479537501e-05;
@@ -48,6 +48,7 @@ IfRotate=0;
 Angle=0;
 ImageTime=10;
 IfLookUpTable=0;
+IfCleanImage=1;
 for i =1:length(varargin)
     if ischar(varargin{i})
         switch varargin{i}
@@ -75,7 +76,7 @@ for i =1:length(varargin)
             case 'Points'
                 Points=varargin{i+1};
             case 'Older'
-                orlder=varargin{i+1};
+                order=varargin{i+1};
             case 'Nsat'
                 Nsat=varargin{i+1};
             case 'IfFourierFilterBG'
@@ -98,6 +99,8 @@ for i =1:length(varargin)
                 IfLookUpTable=varargin{i+1};
             case 'ImageTime'
                 ImageTime=varargin{i+1};
+            case 'IfCleanImage'
+                IfCleanImage=varargin{i+1};
         end
     end
 end
@@ -117,6 +120,11 @@ for i=1:Nmom
     else
         tempraw=momimages{i};
     end
+    %% Do the rotation
+
+    if IfRotate
+        tempraw=ImgRotate(tempraw,Angle);
+    end
     
     if size(tempraw,3)>1
         if ~IfLookUpTable
@@ -128,7 +136,15 @@ for i=1:Nmom
     else
         Ntemp=tempraw;
     end
-    Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=CleanImage(Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3)));
+    if IfCleanImage
+        Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=CleanImage(Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3)));
+    else
+        mask1=isnan(Ntemp);
+        mask2=Ntemp==inf;
+        mask3=Ntemp==-inf;
+        mask=mask1 | mask2 | mask3;
+        Ntemp(mask)=0;
+    end
     MomImgPack{i}=Ntemp;
     momavg=momavg+Ntemp;
     
@@ -147,6 +163,12 @@ for i=1:Nbg
         tempraw=bgimages{i};
     end
     
+    %% Do the rotation
+
+    if IfRotate
+        tempraw=ImgRotate(tempraw,Angle);
+    end
+    
     if size(tempraw,3)>1
         if ~IfLookUpTable
             Ntemp=AtomNumber(tempraw,pixellength.^2,sigma0, Nsat);
@@ -158,7 +180,16 @@ for i=1:Nbg
         Ntemp=tempraw;
     end  
     
-    Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=CleanImage(Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3)));
+    if IfCleanImage
+        Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3))=CleanImage(Ntemp(ROIcon(2):ROIcon(4),ROIcon(1):ROIcon(3)));
+    else
+        mask1=isnan(Ntemp);
+        mask2=Ntemp==inf;
+        mask3=Ntemp==-inf;
+        mask=mask1 | mask2 | mask3;
+        Ntemp(mask)=0;
+    end
+    
     BgPack{i}=Ntemp;
     bgavg=bgavg+Ntemp;
     toc
@@ -188,13 +219,7 @@ if IfFourierFilter
     momavgcrop=FourierFilter(momavgcrop,CutOffFactor);
     bgavgcrop=FourierFilter(bgavgcrop,CutOffFactor);
 end
-%% Do the rotation
 
-if IfRotate
-    momcrop=imrotate(momcrop,Angle);
-    momavgcrop=imrotate(momavgcrop,Angle);
-    bgavgcrop=imrotate(bgavgcrop,Angle);
-end
 
 %% Get profiles
 % n=sum(momcrop,2)';
@@ -274,9 +299,11 @@ kzsq=kz.^2;
 
 [kzsq,B]=sort(kzsq);
 n1dk=n1dk(B);
+kzsort=kz(B);
 if IfPolySmooth
-    n1dk=PolySmooth(n1dk,kzsq,Points,orlder);
+    n1dk=PolySmooth(n1dk,kzsq,Points,order);
 end
+output.kzsort=kzsort;
 output.n1dkz=n1dkz;
 output.kz=kz;
 output.n1dofz=n1dz;
@@ -324,6 +351,8 @@ T=1/(beta*EF_Fit);
 %% Bin again
 kzsqGrida=linspace(0,max(kzsq),nbins+1);
 kzsqGridb=linspace(0,max(sqrt(kzsq)),nbins+1).^2;
+%kzsqGridb=linspace(0,max(kzsq),nbins+1);
+
 kzsqBinGrid=[kzsqGrida(kzsqGrida<=kF_Fit^2),kzsqGridb(kzsqGridb>kF_Fit^2)];
 [ kzsqBin,n1dkBin,kzsqStd,n1dkStd ] = BinGrid( kzsq,n1dk,kzsqBinGrid,0 );
 kzsqBin(isnan(n1dkBin))=[];n1dkBin(isnan(n1dkBin))=[];

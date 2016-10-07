@@ -45,7 +45,7 @@ plot(kgrid,fk);
 save(['T=',num2str(T_mu),'.mat'],'kgrid','fk')
 %%
 load('fk.mat');
-load('T=0.11.mat');
+load('T=0.15.mat');
 %%
 plot(kgrid,fk,'linewidth',2);
 hold on
